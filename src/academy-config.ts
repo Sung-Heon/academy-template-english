@@ -39,6 +39,12 @@ export const config: AcademyConfig = {
           "type": "text",
           "required": false
         }
+      ],
+      "editFields": [
+        "name",
+        "phone",
+        "guardianName",
+        "guardianPhone"
       ]
     },
     "Class": {
@@ -59,6 +65,10 @@ export const config: AcademyConfig = {
           "type": "text",
           "required": false
         }
+      ],
+      "editFields": [
+        "name",
+        "teacher"
       ]
     },
     "Attendance": {
@@ -99,6 +109,11 @@ export const config: AcademyConfig = {
             }
           ]
         }
+      ],
+      "editFields": [
+        "studentId",
+        "date",
+        "status"
       ]
     },
     "Consultation": {
@@ -124,6 +139,11 @@ export const config: AcademyConfig = {
           "label": "상담 내용",
           "type": "textarea"
         }
+      ],
+      "editFields": [
+        "studentId",
+        "date",
+        "memo"
       ]
     },
     "Homework": {
@@ -150,6 +170,11 @@ export const config: AcademyConfig = {
           "label": "마감일",
           "type": "date"
         }
+      ],
+      "editFields": [
+        "classId",
+        "title",
+        "dueDate"
       ]
     },
     "LevelTest": {
@@ -202,6 +227,11 @@ export const config: AcademyConfig = {
             }
           ]
         }
+      ],
+      "editFields": [
+        "studentId",
+        "date",
+        "result"
       ]
     }
   },
