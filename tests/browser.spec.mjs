@@ -24,7 +24,17 @@ for(const slug of ["english"])test(slug+' Next SSR, Hono CRUD, authentication an
   const open=async name=>{await page.locator(`nav a[data-feature="${name}"]`).click();await page.getByRole('button',{name:'+ 새로 등록'}).click();await expect(page.locator('#editor')).toBeVisible();};
   const save=async()=>{await page.getByRole('button',{name:'저장하기'}).click();await expect(page.locator('#editor')).not.toBeVisible();};
   const student=async()=>{const select=page.locator('#form-fields select[name="studentId"]');await expect(select.locator('option').filter({hasText:'브라우저 학생'})).toHaveCount(1);await select.selectOption({label:'브라우저 학생'});};
+  await page.locator('nav a[data-feature="Student"]').click();
+  const trigger=page.getByRole('button',{name:'+ 새로 등록'});
+  await expect(trigger).toHaveAttribute('data-slot','button');
+  await expect(page.locator('table')).toHaveAttribute('data-slot','table');
+  await trigger.click();await expect(page.getByRole('dialog',{name:'학생 관리 등록'})).toBeVisible();
+  await expect(page.locator('#form-fields input').first()).toHaveAttribute('data-slot','input');
+  await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).not.toBeVisible();await expect(trigger).toBeFocused();
   await open('Student');await page.getByLabel('이름',{exact:true}).fill('브라우저 학생');await save();await expect(page.getByRole('cell',{name:'브라우저 학생',exact:true})).toBeVisible();
+  await page.locator('tbody tr').filter({hasText:'브라우저 학생'}).getByRole('button',{name:'수정',exact:true}).click();
+  await page.locator('#edit-form [name="guardianName"]').fill('브라우저 보호자');await save();
+  await expect(page.getByRole('cell',{name:'브라우저 보호자',exact:true})).toBeVisible();
   await open('Class');await page.getByLabel('수업명',{exact:true}).fill('브라우저 수업');await page.getByLabel('담당 선생님',{exact:true}).fill('김선생');await save();
   await open('Attendance');await student();await page.getByLabel('날짜',{exact:true}).fill('2026-10-08');await page.getByRole('combobox',{name:'출결',exact:true}).selectOption('present');await save();await expect(page.locator('.pill')).toHaveText('출석');
   await open('Consultation');await student();await page.getByLabel('날짜',{exact:true}).fill('2026-10-08');await page.getByLabel('상담 내용',{exact:true}).fill('Next 전환 후에도 보존되는 상담');await save();await expect(page.getByText('상담 내용 · Next 전환 후에도 보존되는 상담',{exact:true})).toBeVisible();
