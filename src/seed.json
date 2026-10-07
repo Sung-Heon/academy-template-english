@@ -1,0 +1,11 @@
+{
+  "Student": [
+    {
+      "id": "sample-student",
+      "name": "김하늘 (샘플)",
+      "phone": "010-0000-0000",
+      "guardianName": "김보호",
+      "guardianPhone": "010-0000-0001"
+    }
+  ]
+}

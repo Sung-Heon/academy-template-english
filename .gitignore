@@ -4,3 +4,6 @@ dist/
 .env.*
 *.sqlite*
 .vercel/
+
+.next/
+*.tsbuildinfo
