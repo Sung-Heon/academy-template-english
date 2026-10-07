@@ -28,4 +28,4 @@ Academy Studio에서 배포할 수 있는 독립 학원 앱 템플릿입니다.
 
 샘플 DB는 템플릿 루트에서 `node --experimental-strip-types scripts/create-demo.ts`로 만들 수 있습니다. 학생·수업·출결·상담·숙제·레벨 테스트 예시만 포함하며, 기존 파일은 덮어쓰지 않습니다. 생성한 SQLite 파일을 Turso의 도쿄 그룹에 `turso db create academy-english-demo --group <도쿄 그룹> --from-file ./english-demo.sqlite`로 올리세요. 그룹 리전은 Turso의 현재 location 목록에서 Tokyo를 확인해 선택하세요.
 
-공개 예시는 `PUBLIC_DEMO=1`, `READ_ONLY=1`과 **읽기 전용 DB 토큰**(`turso db tokens create academy-english-demo --read-only`)을 함께 설정합니다. 모든 등록 요청이 차단되고 화면에도 읽기 전용임이 표시됩니다. Vercel 함수 리전도 도쿄(`hnd1`)로 설정합니다. DB 주소와 토큰은 Vercel의 서버 환경변수에만 저장하고 공개 저장소에는 넣지 마세요.
+공개 예시는 `PUBLIC_DEMO=1`, `READ_ONLY=1`과 **읽기 전용 DB 토큰**(`turso db tokens create academy-english-demo --read-only`)을 함께 설정합니다. 모든 등록 요청이 차단되고 화면에도 읽기 전용임이 표시됩니다. Vercel 함수 리전은 서울(`icn1`)로 설정합니다. DB는 도쿄에 있습니다. DB 주소와 토큰은 Vercel의 서버 환경변수에만 저장하고 공개 저장소에는 넣지 마세요.
