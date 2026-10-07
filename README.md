@@ -22,6 +22,8 @@ Academy Studio에서 배포할 수 있는 독립 학원 앱 템플릿입니다.
 
 ## Turso 예시 앱
 
+[English Academy 예시 열기](https://academy-english-demo.vercel.app) — Turso 도쿄 DB를 사용하는 로그인 없는 읽기 전용 샘플입니다.
+
 이 템플릿은 `TURSO_DATABASE_URL`과 `TURSO_AUTH_TOKEN`을 서버 환경변수로 지정하면 Turso(libSQL)에 연결합니다. 이 설정이 있으면 DATABASE_URL보다 우선하며, 시작할 때 원격 DB를 변경하지 않습니다. 카탈로그의 일반 자동 배포는 계속 Neon을 사용합니다.
 
 샘플 DB는 템플릿 루트에서 `node --experimental-strip-types scripts/create-demo.ts`로 만들 수 있습니다. 학생·수업·출결·상담·숙제·레벨 테스트 예시만 포함하며, 기존 파일은 덮어쓰지 않습니다. 생성한 SQLite 파일을 Turso의 도쿄 그룹에 `turso db create academy-english-demo --group <도쿄 그룹> --from-file ./english-demo.sqlite`로 올리세요. 그룹 리전은 Turso의 현재 location 목록에서 Tokyo를 확인해 선택하세요.

@@ -8,6 +8,8 @@ const filename = resolve(process.argv[2] || 'english-demo.sqlite');
 writeFileSync(filename, '', { flag: 'wx', mode: 0o600 });
 const db = new DatabaseSync(filename);
 try {
+    // Turso's database upload endpoint requires WAL and 4096-byte pages.
+    db.exec('PRAGMA page_size=4096; PRAGMA journal_mode=WAL; PRAGMA auto_vacuum=0');
     migrateLocal(db, process.cwd());
     const samples: Record<string, { columns: string[]; rows: string[][] }> = {
         Student: { columns: ['id', 'name', 'phone', 'guardianName', 'guardianPhone'], rows: [
