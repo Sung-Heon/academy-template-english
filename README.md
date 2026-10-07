@@ -3,7 +3,7 @@
 Academy Studio에서 배포할 수 있는 독립 학원 앱 템플릿입니다.
 
 ## 코드 받아서 수정하기
-1. GitHub의 **Use this template → Create a new repository**로 본인 계정에 공개 저장소를 만드세요.
+1. GitHub의 **Fork → Create fork**로 본인 계정에 공개 저장소를 만드세요.
 2. 저장소를 clone하고 Node.js 22.19 이상에서 `npm ci`, `npm run dev`를 실행하세요. 로컬 주소는 http://127.0.0.1:3100 입니다.
 3. Codex, Claude Code, OpenCode 등 원하는 코딩 도구로 수정하세요. AI는 먼저 AGENTS.md를 읽어야 합니다.
 4. `npm run lint && npm run typecheck && npm test && npm run build`를 실행한 뒤 GitHub에 push하세요.
