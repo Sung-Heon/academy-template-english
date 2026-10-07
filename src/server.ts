@@ -7,8 +7,8 @@ import { openDatabase } from './database.ts';
 import { authorize } from './access.ts';
 const config: AppConfig = JSON.parse(readFileSync('src/config.json', 'utf8'));
 const db = await openDatabase();
-// PostgreSQL schema and initial data are provisioned by the platform.
-if (!process.env.DATABASE_URL?.startsWith('postgres'))
+// Remote schemas and sample data are provisioned before deployment.
+if (!process.env.TURSO_DATABASE_URL && !process.env.DATABASE_URL?.startsWith('postgres'))
     await db.query('INSERT INTO "Student" ("id","name","phone","guardianName","guardianPhone") VALUES ($1,$2,$3,$4,$5) ON CONFLICT ("id") DO NOTHING', ['sample-student', '김하늘 (샘플)', '010-0000-0000', '김보호', '010-0000-0001']);
 interface AppRequest {
     id: string;
@@ -30,7 +30,7 @@ async function handle(req: AppRequest): Promise<AppResponse> {
         if (path === '/health')
             return json(200, { ok: true });
         if (path === '/api/config')
-            return json(200, config);
+            return json(200, { ...config, readOnly: Boolean(req.readOnly || process.env.READ_ONLY === '1') });
         if (path.startsWith('/api/')) {
             const entity = path.slice(5);
             if (!config.features.includes(entity))

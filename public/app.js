@@ -7,6 +7,7 @@ const $ = id => document.getElementById(id);
 function el(tag, text) { const e = document.createElement(tag); if (text !== undefined)
     e.textContent = text; return e; }
 $('academy-name').textContent = config.name;
+if (config.readOnly) document.querySelector('.badge').textContent = '예시 앱 · 샘플 데이터 · 읽기 전용';
 for (const feature of config.features) {
     const b = el('button', labels[feature]);
     b.onclick = () => { current = feature; render(); };
@@ -56,6 +57,10 @@ async function render() {
     submit.type = 'submit';
     submit.className = 'primary';
     $('form').append(submit);
+    if (config.readOnly) {
+        for (const input of $('form').querySelectorAll('input, select, button')) input.disabled = true;
+        submit.textContent = '예시 앱은 조회만 가능해요';
+    }
     $('form').onsubmit = async (e) => { e.preventDefault(); submit.disabled = true; try {
         const r = await fetch('api/' + current, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData($('form')))) });
         const data = await r.json();

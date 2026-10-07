@@ -1,6 +1,7 @@
 import { timingSafeEqual, createHash } from 'node:crypto';
 import type { IncomingHttpHeaders } from 'node:http';
 export function authorize(headers: IncomingHttpHeaders, method: string, env: NodeJS.ProcessEnv = process.env): number {
+    if (env.PUBLIC_DEMO === '1' && env.READ_ONLY === '1') return ['GET', 'HEAD', 'OPTIONS'].includes(method) ? 200 : 403;
     if (!env.APP_PASSWORD && env.VERCEL !== '1') return 200;
     if (!env.APP_PASSWORD) return 503;
     const expected = 'Basic ' + Buffer.from('admin:' + env.APP_PASSWORD).toString('base64');
