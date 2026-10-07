@@ -8,7 +8,7 @@ export async function openDatabase() {
         return {
             query: async (text: string, values: SQLInputValue[] = []): Promise<Record<string, unknown>[]> => {
                 try {
-                    const result = await db.execute({ sql: text, args: values });
+                    const result = await db.execute({ sql: text, args: values.map(value => ArrayBuffer.isView(value) ? new Uint8Array(value.buffer, value.byteOffset, value.byteLength) : value) });
                     return result.rows.map(row => Object.fromEntries(Object.entries(row)));
                 } catch { throw Error('Database request failed'); }
             },
