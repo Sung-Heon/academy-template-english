@@ -1,0 +1,47 @@
+{
+  "name": "English Academy",
+  "features": [
+    "Student",
+    "Class",
+    "Attendance",
+    "Consultation",
+    "Homework",
+    "LevelTest"
+  ],
+  "studentFields": [
+    {
+      "name": "name",
+      "label": "이름",
+      "type": "text",
+      "required": true
+    },
+    {
+      "name": "phone",
+      "label": "전화번호",
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "guardianName",
+      "label": "보호자 이름",
+      "type": "text",
+      "required": false
+    },
+    {
+      "name": "guardianPhone",
+      "label": "보호자 전화번호",
+      "type": "text",
+      "required": false
+    }
+  ],
+  "levelOptions": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "attendanceFilter": false,
+  "consultationDate": false
+}

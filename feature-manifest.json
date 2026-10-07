@@ -1,0 +1,30 @@
+{
+  "features": [
+    "Student",
+    "Class",
+    "Attendance",
+    "Consultation",
+    "Homework",
+    "LevelTest"
+  ],
+  "entities": [
+    "Student",
+    "Class",
+    "Attendance",
+    "Consultation",
+    "Homework",
+    "LevelTest"
+  ],
+  "roles": [
+    "owner",
+    "staff"
+  ],
+  "workflows": [
+    "학생 등록",
+    "수업 배정",
+    "출결 기록",
+    "상담 기록",
+    "숙제 부여",
+    "레벨 테스트 기록"
+  ]
+}
